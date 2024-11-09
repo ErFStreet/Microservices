@@ -1,0 +1,18 @@
+﻿version: '3.4'
+
+services:
+  accountingservice:
+    image: accountingservice
+    build:
+      context: .
+      dockerfile: ./src/Microservice.AccountingService/Dockerfile  
+    ports:
+      - "5001:8080"  
+
+  blogservice:
+    image: blogservice
+    build:
+      context: .
+      dockerfile: ./src/Microservice.BlogService/Dockerfile  
+    ports:
+      - "5002:8080"  

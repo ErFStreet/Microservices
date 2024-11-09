@@ -1,0 +1,17 @@
+﻿global using Microservice.Domain.Base;
+global using System.ComponentModel;
+global using Microservice.Application.Common.DTOs.Base;
+global using MediatR;
+global using System.ComponentModel.DataAnnotations;
+global using Microservice.Application.Common.Interfaces;
+global using Microservice.Application.Common.Responses;
+global using Microservice.Domain.Entities.Accounting;
+global using Mapster;
+global using Microservice.Application.Features.UserFeatures.Commands;
+global using Microservice.Application.Features.Base;
+global using Microservice.Application.Common.DTOs.User;
+global using FluentValidation;
+global using Microservice.Application.Features.UserFeatures.Queries;
+global using Microsoft.EntityFrameworkCore;
+global using Microservice.Application.Common;
+global using Microservice.Application.Common.DTOs.Role;
