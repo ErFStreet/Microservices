@@ -6,5 +6,5 @@ public class BaseEntity<TKey> : IEntity<TKey> where TKey : notnull
 
     public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
 
-    public bool IsSoftDeleted { get; set; }
+    public bool IsSoftDeleted { get; set; } = false;
 }

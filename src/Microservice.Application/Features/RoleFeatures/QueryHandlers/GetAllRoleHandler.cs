@@ -23,7 +23,7 @@ public class GetAllRoleHandler : IRequestHandler<GetAllRoleRequest,
                     Name = current.Name,
                 }).ToListAsync(cancellationToken);
 
-            if (result.Count > 0) return Result<List<RoleDto>>
+            if (result.Count <= 0) return Result<List<RoleDto>>
                     .NotFound(StatusMessage.NotFound);
 
             return Result<List<RoleDto>>.Success(StatusMessage.Added,

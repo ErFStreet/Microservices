@@ -2,7 +2,7 @@
 
 [ApiController]
 [ApiVersion("1.0")]
-[Route("api/v{version:version}/[controller]")]
+[Route("api/v{version:apiVersion}/[controller]")]
 public class GenericController<AddRequest, AddRequestResult,
     UpdateRequest, UpdateRequestResult,
     DeleteRequest, DeleteRequestResult,
@@ -16,6 +16,7 @@ public class GenericController<AddRequest, AddRequestResult,
         _mediator = mediator;
     }
 
+    [NonAction]
     public async Task<AddRequestResult> AddAsync(AddRequest request,
         CancellationToken cancellation)
     {
@@ -30,6 +31,7 @@ public class GenericController<AddRequest, AddRequestResult,
         throw new Exception(StatusMessage.ServerError);
     }
 
+    [NonAction]
     public async Task<UpdateRequestResult> UpdateAsync(
         UpdateRequest request,
         CancellationToken cancellation)
@@ -45,6 +47,7 @@ public class GenericController<AddRequest, AddRequestResult,
         throw new Exception(StatusMessage.ServerError);
     }
 
+    [NonAction]
     public async Task<DeleteRequestResult> DeleteAsync(
         DeleteRequest request,
         CancellationToken cancellation)
@@ -60,6 +63,7 @@ public class GenericController<AddRequest, AddRequestResult,
         throw new Exception(StatusMessage.ServerError);
     }
 
+    [NonAction]
     public async Task<GetByIdRequestResult> GetByIdAsync(
         GetByIdRequest request,
         CancellationToken cancellation)
@@ -75,6 +79,7 @@ public class GenericController<AddRequest, AddRequestResult,
         throw new Exception(StatusMessage.ServerError);
     }
 
+    [NonAction]
     public async Task<GetAllRequestResult> GetAllAsync(
         GetAllRequest request,
         CancellationToken cancellation)

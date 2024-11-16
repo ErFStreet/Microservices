@@ -31,6 +31,6 @@ public class RoleController : GenericController
 
     [HttpGet("Roles")]
     public async Task<ActionResult<Result<List<RoleDto>>>> GetAll(
-        GetAllRoleRequest request, CancellationToken cancellation)
-        => await GetAllAsync(request, cancellation);
+          CancellationToken cancellation)
+        => await GetAllAsync(new GetAllRoleRequest(), cancellation);
 }

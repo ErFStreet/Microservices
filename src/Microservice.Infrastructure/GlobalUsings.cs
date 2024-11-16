@@ -6,3 +6,4 @@ global using Microservice.Application.Common.Interfaces;
 global using Microservice.Application.Common;
 global using Microsoft.EntityFrameworkCore.Metadata.Builders;
 global using Microservice.Infrastructure.Configurations;
+global using Microservice.Infrastructure.Databases;

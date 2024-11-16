@@ -1,12 +1,9 @@
-﻿using Microservice.Application.Common.Interfaces;
+﻿namespace Microservice.Infrastructure.Repositories;
 
-namespace Microservice.Infrastructure.Repositories;
-
-public class Repository<TEntity, TKey, TDbContext>(TDbContext dbContext) :
+public class Repository<TEntity, TKey>(AccountingDbContext dbContext) :
     IRepository<TEntity, TKey>
     where TEntity : BaseEntity<TKey>, new()
     where TKey : notnull
-    where TDbContext : DbContext
 {
     private readonly DbSet<TEntity> _entity = dbContext.Set<TEntity>();
     public IQueryable<TEntity> Query => _entity.AsQueryable();

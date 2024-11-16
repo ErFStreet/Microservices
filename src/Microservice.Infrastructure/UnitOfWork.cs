@@ -1,11 +1,10 @@
 ﻿namespace Microservice.Infrastructure;
 
-public class UnitOfWork<TDbContext> : IUnitOfWork
-    where TDbContext : DbContext
+public class UnitOfWork : IUnitOfWork
 {
-    private readonly TDbContext _dbContext;
+    private readonly AccountingDbContext _dbContext;
 
-    public UnitOfWork(TDbContext dbContext)
+    public UnitOfWork(AccountingDbContext dbContext)
     {
         _dbContext = dbContext;
     }

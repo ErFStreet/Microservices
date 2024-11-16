@@ -1,9 +1,4 @@
-﻿using Microservice.Application.Common;
-using Microservice.Application.Common.Behaviors;
-using Microservice.Application.Common.Interfaces;
-using Microservice.Infrastructure;
-using Microservice.Infrastructure.Repositories;
-using System.Reflection;
+﻿using FluentValidation.AspNetCore;
 
 namespace Microservice.AccountingService.Infrastructure.Extensions;
 
@@ -12,7 +7,12 @@ public static class ServiceExtension
     public static void RegisterServices(this IServiceCollection services,
         IConfiguration configuration)
     {
-        services.AddControllers();
+        services.AddControllers()
+         .AddFluentValidation(current =>
+         {
+             current.RegisterValidatorsFromAssembly
+             (typeof(IAssembly).Assembly);
+         });
 
         services.AddEndpointsApiExplorer();
 
@@ -42,9 +42,9 @@ public static class ServiceExtension
         services.AddTransient(typeof(IPipelineBehavior<,>),
             typeof(ValidationBehavior<,>));
 
-        services.AddScoped(typeof(IRepository<,>), typeof(Repository<,,>));
+        services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
 
-        services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork<>));
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
     }
 
     public static void RegisterApiVersioning(this IServiceCollection
@@ -52,9 +52,19 @@ public static class ServiceExtension
     {
         services.AddApiVersioning(options =>
         {
-            options.ReportApiVersions = true;
             options.DefaultApiVersion = new ApiVersion(1, 0);
+
+            options.ReportApiVersions = true;
+
             options.AssumeDefaultVersionWhenUnspecified = true;
+
+            options.ApiVersionReader = ApiVersionReader.Combine(
+                new UrlSegmentApiVersionReader(),
+                new HeaderApiVersionReader("X-Api-Version"));
+        }).AddVersionedApiExplorer(options =>
+        {
+            options.GroupNameFormat = "'v'V";
+            options.SubstituteApiVersionInUrl = true;
         });
     }
 

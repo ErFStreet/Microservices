@@ -11,7 +11,7 @@ public class AddRoleValidator : AbstractValidator<AddRoleRequest>
     {
         RuleFor(x => x.Name)
             .NotEmpty().WithMessage(StatusMessage.CheckFields)
-            .Length(10, 30).WithMessage
-            (string.Format("{0} must be between {1} and {2}", 10, 30));
+            .Length(5, 30).WithMessage
+            (string.Format("Name must be between {0} and {1}", 10, 30));
     }
 }
